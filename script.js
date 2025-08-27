@@ -3,15 +3,41 @@ const totalStars = 5;
 
 // Переменные для правильных ответов (измени их на свои)
 const correctAnswers = {
-    q1: "синий",  // Твой любимый цвет
-    q2: "привет", // Что ты сказал при первой встрече
-    q3: "паста"   // Твоё лучшее блюдо
+    q1: "когда дуюсь",  // Что я люблю в тебе больше всего
+    q2: "меня",         // Чего мне не хватает прямо сейчас
+    q3: "умничка"       // Каким словом я тебе хвалю
 };
 
 const correctRiddles = {
-    r1: "тоска",  // или "мысли обо мне"
-    r2: "любовь"  // или "чувства"
+    r1: "липтон",       // Загадка 1
+    r2: "mzlff"         // Загадка 2
 };
+
+// Подсказки
+let hintUsed = {
+    q1: false,
+    q2: false,
+    q3: false,
+    r1: false,
+    r2: false
+};
+
+const hints = {
+    q1: "Что то, что касается губ...",
+    q2: "Какого-то человечка...",
+    q3: "Что то умном...",
+    r1: "Говорила что его можно пить с шоколадом...",
+    r2: "Какой-то Илюша, вот только не всопмню его псевдоним..."
+};
+
+function showHint(questionId) {
+    if (!hintUsed[questionId]) {
+        alert(hints[questionId]);
+        hintUsed[questionId] = true;
+    } else {
+        alert("Уже все натыкала, родная...");
+    }
+}
 
 function startGame() {
     document.getElementById('screen-start').classList.add('hidden');
@@ -22,7 +48,18 @@ function collectStar(star) {
     if (!star.classList.contains('collected')) {
         star.classList.add('collected');
         collectedStars++;
-        document.getElementById('stars-counter').textContent = `Звёзд собрано: ${collectedStars}/${totalStars}`;
+        let counterText = `Звёзд собрано: ${collectedStars}/${totalStars}`;
+        
+        // Сообщения поддержки
+        if (collectedStars === 1) {
+            counterText += "<br>❤ Ты умничка!";
+        } else if (collectedStars === 3) {
+            counterText += "<br>❤ Горжусь тобой!";
+        } else if (collectedStars === 5) {
+            counterText += "<br>❤ Пойдем дальше?";
+        }
+        
+        document.getElementById('stars-counter').innerHTML = counterText;
         
         if (collectedStars === totalStars) {
             document.getElementById('next1').classList.remove('hidden');
@@ -47,12 +84,12 @@ function checkAnswers() {
     const resultElement = document.getElementById('quiz-result');
     
     if (isCorrect1 && isCorrect2 && isCorrect3) {
-        resultElement.textContent = "✅ Все ответы правильные! Мост построен!";
-        resultElement.style.color = "#7fff00";
+        resultElement.innerHTML = "✅ Все ответы правильные! Умничка!<br>❤ Димка передает что он рядом с тобой в этом мини игре!";
+        resultElement.style.color = "#4CAF50";
         document.getElementById('next2').classList.remove('hidden');
     } else {
-        resultElement.textContent = "❌ Попробуй ещё раз...";
-        resultElement.style.color = "#ff6b6b";
+        resultElement.innerHTML = "❌ Может попробуешь еще раз Лизаветка...<br>💡 Там есть кнопка 'Подсказка' если нужно! Так.. к слову!";
+        resultElement.style.color = "#f44336";
     }
     
     resultElement.classList.remove('hidden');
@@ -73,12 +110,12 @@ function checkRiddles() {
     const resultElement = document.getElementById('riddle-result');
     
     if (isCorrect1 && isCorrect2) {
-        resultElement.textContent = "✅ Загадки разгаданы! Выход найден!";
-        resultElement.style.color = "#7fff00";
+        resultElement.innerHTML = "✅ Загадки разгаданы! Умничка!<br>❤ Я рад что ты смогла справиться с этим. Рад даже если настолько далеко от тебя";
+        resultElement.style.color = "#4CAF50";
         document.getElementById('next3').classList.remove('hidden');
     } else {
-        resultElement.textContent = "❌ Подумай ещё...";
-        resultElement.style.color = "#ff6b6b";
+        resultElement.innerHTML = "❌ Если не получается ты всегда можешь спросить у меня...<br>💡 Так же есть подсказки!";
+        resultElement.style.color = "#f44336";
     }
     
     resultElement.classList.remove('hidden');
@@ -88,14 +125,16 @@ function showFinal() {
     document.getElementById('screen-level3').classList.add('hidden');
     document.getElementById('screen-final').classList.remove('hidden');
     
-    // Твоё личное сообщение (измени его как хочешь)
+    // Твоё личное сообщение
     const finalMessage = `
-        <p>Ты прошла весь путь... ❤</p>
-        <p>Каждый шаг, каждая звезда, каждая загадка — всё это ведёт к одному.</p>
-        <p>К тебе.</p>
+        <p>Ты прошла весь путь, ты справилась ❤</p>
+        <p>Все что ты сейчас сделала — всё это ведёт к одному.</p>
+        <p>К тебе. К твоим чуствам, к твоему внутреннему "я"</p>
+        <p>❤ Даже когда мы не говорим, я рядом. Я рад что мог занять тебя такой мелочью и очень рад что ты его прошла, ты умничка!</p>
         <p>Спасибо, что есть. Спасибо, что рядом.</p>
-        <p>Я скучал. Я люблю тебя.</p>
-        <p>Твой, навсегда ❤</p>
+        <p>Я всегда скучал и скучаю по тебе, даже когда ты рядом</p>
+        <p>Спасибо за все и спасибо за то что ты есть ❤</p>
+        <p>Люблю</p>
     `;
     
     document.getElementById('final-message').innerHTML = finalMessage;
