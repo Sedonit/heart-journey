@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Путешествие к сердцу</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game">
+        <!-- Начальный экран -->
+        <div id="screen-start" class="screen">
+            <h1>❤ Путешествие к сердцу ❤</h1>
+            <p>Готова отправиться в волшебное путешествие?</p>
+            <button onclick="startGame()">Начать путешествие</button>
+        </div>
+
+        <!-- Уровень 1: Лес воспоминаний -->
+        <div id="screen-level1" class="screen hidden">
+            <h2>Лес воспоминаний</h2>
+            <p>Найди 5 звёзд памяти, чтобы пройти дальше</p>
+            <div class="stars-container">
+                <div class="star" onclick="collectStar(this)"></div>
+                <div class="star" onclick="collectStar(this)"></div>
+                <div class="star" onclick="collectStar(this)"></div>
+                <div class="star" onclick="collectStar(this)"></div>
+                <div class="star" onclick="collectStar(this)"></div>
+            </div>
+            <p id="stars-counter">Звёзд собрано: 0/5</p>
+            <button id="next1" class="hidden" onclick="showLevel2()">Продолжить путь</button>
+        </div>
+
+        <!-- Уровень 2: Мост любопытства -->
+        <div id="screen-level2" class="screen hidden">
+            <h2>Мост любопытства</h2>
+            <p>Ответь на вопросы, чтобы перейти мост</p>
+            <div id="quiz-container">
+                <div class="question">
+                    <p>1. Какой мой любимый цвет?</p>
+                    <input type="text" id="q1" placeholder="Твой ответ...">
+                </div>
+                <div class="question">
+                    <p>2. Что я сказал в первый раз, когда мы встретились?</p>
+                    <input type="text" id="q2" placeholder="Твой ответ...">
+                </div>
+                <div class="question">
+                    <p>3. Какое блюдо я готовлю лучше всего?</p>
+                    <input type="text" id="q3" placeholder="Твой ответ...">
+                </div>
+                <button onclick="checkAnswers()">Проверить ответы</button>
+                <p id="quiz-result" class="hidden"></p>
+                <button id="next2" class="hidden" onclick="showLevel3()">Перейти по мосту</button>
+            </div>
+        </div>
+
+        <!-- Уровень 3: Пещера загадок -->
+        <div id="screen-level3" class="screen hidden">
+            <h2>Пещера загадок</h2>
+            <p>Реши загадки, чтобы найти выход</p>
+            <div class="riddle">
+                <p>Загадка 1: Я всегда с тобой, когда ты одна, но исчезаю, когда ты рядом с кем-то другим. Что это?</p>
+                <input type="text" id="r1" placeholder="Твой ответ...">
+            </div>
+            <div class="riddle">
+                <p>Загадка 2: Чем больше ты отдаёшь, тем больше у тебя остаётся. Что это?</p>
+                <input type="text" id="r2" placeholder="Твой ответ...">
+            </div>
+            <button onclick="checkRiddles()">Проверить загадки</button>
+            <p id="riddle-result" class="hidden"></p>
+            <button id="next3" class="hidden" onclick="showFinal()">Найти сердце</button>
+        </div>
+
+        <!-- Финальный экран -->
+        <div id="screen-final" class="screen hidden">
+            <div class="heart-animation">❤</div>
+            <h2>Ты нашла самое дорогое сердце...</h2>
+            <div id="final-message">
+                <!-- Здесь будет твоё сообщение -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
