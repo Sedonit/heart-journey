@@ -82,6 +82,11 @@ button:hover {
     margin: 5px !important;
 }
 
+.skip-btn {
+    background: linear-gradient(45deg, #95a5a6, #7f8c8d) !important;
+    font-size: 0.9em !important;
+}
+
 input[type="text"] {
     padding: 12px;
     font-size: 1em;
@@ -165,6 +170,15 @@ input[type="text"]:focus {
     margin: 15px 0;
     color: #ff6b6b;
     font-weight: bold;
+}
+
+.correct-answers {
+    background: #e8f5e9;
+    border: 1px solid #4caf50;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px 0;
+    color: #2e7d32;
 }
 
 /* Мобильная версия */
